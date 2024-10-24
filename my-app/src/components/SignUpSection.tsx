@@ -20,7 +20,7 @@ export default function SignUpPage() {
     e.preventDefault();
     
     try {
-      const res = await axios.post('http://localhost:8000/api/auth/register', { name, email, password });
+      const res = await axios.post('https://wealth-wise3-4o1t.vercel.app/api/auth/register', { name, email, password });
       const token = res.data.token;
       localStorage.setItem('token', token); // Store JWT token in localStorage
       setMessage('Registration successful!');

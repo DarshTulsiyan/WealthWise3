@@ -35,7 +35,7 @@
 // async function fetchExpenseData(userId: string) {
 //   console.log(userId); // Logs the userId for debugging purposes
 //   try {
-//     const response = await axios.get(`http://localhost:8000/api/expenses`, {
+//     const response = await axios.get(`https://wealth-wise3-4o1t.vercel.app/api/expenses`, {
 //       headers: {
 //         Authorization: `Bearer ${localStorage.getItem("token")}`, // Retrieve the token from localStorage
 //       },
@@ -178,7 +178,7 @@ interface Category {
 async function fetchExpenseData(userId: string) {
   console.log(userId); // Logs the userId for debugging purposes
   try {
-    const response = await axios.get(`http://localhost:8000/api/expenses`, {
+    const response = await axios.get(`https://wealth-wise3-4o1t.vercel.app/api/expenses`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`, // Retrieve the token from localStorage
       },

@@ -139,7 +139,7 @@ export default function WeeklySumup() {
   const fetchGoals = async () => {
     const userId = localStorage.getItem('userId');
     try {
-      const response = await axios.get(`http://localhost:8000/api/goals`, {
+      const response = await axios.get(`https://wealth-wise3-4o1t.vercel.app/api/goals`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },

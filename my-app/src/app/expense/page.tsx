@@ -12,7 +12,7 @@ import axios from 'axios';
 async function fetchExpenseData(userId: string) {
   console.log(userId)
   try {
-    const response = await axios.get(`http://localhost:8000/api/expenses`, {
+    const response = await axios.get(`https://wealth-wise3-4o1t.vercel.app/api/expenses`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
       },
@@ -34,7 +34,7 @@ async function updateExpenseData(updatedExpenseData: { categories: { name: strin
   console.log(JSON.stringify(updatedExpenseData));
 
   try {
-    const response = await axios.post(`http://localhost:8000/api/expenses`, updatedExpenseData, {
+    const response = await axios.post(`https://wealth-wise3-4o1t.vercel.app/api/expenses`, updatedExpenseData, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
