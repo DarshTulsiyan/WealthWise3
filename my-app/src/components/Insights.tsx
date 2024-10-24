@@ -14,12 +14,25 @@ interface Article {
 
 export default function Insights() {
   const [articles, setArticles] = useState<Article[]>([]);
-  const API_KEY = 'aad6df4eb2a64bf1b83b154f37bc581d'; // Replace with your actual API key
 
+  
   useEffect(() => {
-    fetch(`https://newsapi.org/v2/top-headlines?category=business&apiKey=${API_KEY}`)
-      .then(response => response.json())
-      .then(data => setArticles(data.articles.slice(0, 10))) // Display only top 10 articles
+    const API_KEY = 'aad6df4eb2a64bf1b83b154f37bc581d';
+  
+    fetch(`https://newsapi.org/v2/top-headlines?category=business&apiKey=${API_KEY}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Upgrade-Insecure-Requests': '1', // This can sometimes help
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => setArticles(data.articles.slice(0, 10)))
       .catch(error => console.error('Error fetching news:', error));
   }, []);
 
