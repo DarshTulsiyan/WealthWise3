@@ -477,7 +477,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
-import { Home, Utensils, Plane, Film, ShoppingBag, Package } from "lucide-react";
+// import { Home, Utensils, Plane, Film, ShoppingBag, Package } from "lucide-react";
 import { Progress } from "./ui/progress";
 
 // Interface for expense categories
@@ -545,10 +545,10 @@ function AddAmountModal({
   );
 }
 
-interface ExpenseGoalsProps {
-  expenses: ExpenseCategory[];
-  onUpdateExpense: (categoryName: string, amount: number) => void;
-}
+// interface ExpenseGoalsProps {
+//   expenses: ExpenseCategory[];
+//   onUpdateExpense: (categoryName: string, amount: number) => void;
+// }
 
 export default function ExpenseGoals() {
   const [goals, setGoals] = useState<ExpenseCategory[]>([]);

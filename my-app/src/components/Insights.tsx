@@ -1,8 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import { Card, CardContent } from './ui/card';
-
-
+import Image from 'next/image';
 
 interface Article {
   source: { name: string };
@@ -31,7 +30,7 @@ export default function Insights() {
         {articles.map((article, index) => (
           <Card key={index} className="overflow-hidden">
             <a href={article.url} target="_blank" rel="noopener noreferrer">
-              <img
+              <Image
                 src={article.urlToImage || '/placeholder.svg'}
                 alt={article.title}
                 className="w-full h-48 object-cover"

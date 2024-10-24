@@ -6,13 +6,19 @@ import { Button } from './ui/button';
 
 const categories = ['Housing', 'Transportation', 'Food', 'Shopping', 'Entertainment', 'Others']; // Predefined categories
 
-export default function AddExpenseModal({ isOpen, onClose, onSave }) {
+interface AddExpenseModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onSave: (expense: { name: string; amount: number; categoryName: string; date: string }) => void;
+}
+
+export default function AddExpenseModal({ isOpen, onClose, onSave }: AddExpenseModalProps) {
   const [name, setName] = useState('');
   const [amount, setAmount] = useState('');
   const [categoryName, setCategoryName] = useState(categories[0]); // Default to first category
   const [date, setDate] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newExpense = {
       name,

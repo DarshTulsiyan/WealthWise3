@@ -170,9 +170,9 @@ interface Category {
   items: Item[];
 }
 
-interface ExpenseData {
-  categories: Category[];
-}
+// interface ExpenseData {
+//   categories: Category[];
+// }
 
 // Function to fetch expense data from the backend
 async function fetchExpenseData(userId: string) {
@@ -201,10 +201,17 @@ export default function RecentExpenses() {
     // Fetch data when the component is mounted
     async function getData() {
       const userId = localStorage.getItem("userId");
-      const data = await fetchExpenseData(userId); // Fetch data using the fetchExpenseData function
-      if (data && data.categories) {
-        setCategories(data.categories); // Set categories if data is available
+      if (userId) {
+        const data = await fetchExpenseData(userId); // Fetch data using the fetchExpenseData function
+        if (data && data.categories) {
+          setCategories(data.categories); // Set categories if data is available
+        }
+      } else {
+        console.error("User ID is null");
       }
+      // if (data && data.categories) {
+      //   setCategories(data.categories); // Set categories if data is available
+      // }
       setLoading(false); // Set loading to false after fetching
     }
     getData();

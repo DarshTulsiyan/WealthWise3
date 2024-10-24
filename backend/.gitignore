@@ -69,4 +69,3 @@ mongod.lock
 .DS_Store
 Thumbs.db
 
-keys.js

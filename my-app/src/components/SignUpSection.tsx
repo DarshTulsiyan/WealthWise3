@@ -25,7 +25,7 @@ export default function SignUpPage() {
       localStorage.setItem('token', token); // Store JWT token in localStorage
       setMessage('Registration successful!');
       router.push('/dashboard'); // Redirect to dashboard after successful sign-up
-    } catch (err) {
+    } catch (err:any) {
       setError(err.response.data.msg || 'Registration failed');
     }
   };

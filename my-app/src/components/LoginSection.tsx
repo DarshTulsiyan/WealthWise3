@@ -287,7 +287,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
-  const [message, setMessage] = useState('');
+  // const [message, setMessage] = useState('');
   const router = useRouter();
 
   useEffect(() => {
@@ -301,12 +301,12 @@ export default function LoginPage() {
       localStorage.setItem('token', token);
       localStorage.setItem('userId', userId);
       localStorage.setItem('email', email);
-      setMessage('Login successful!');
+      // setMessage('Login successful!');
       router.push('/dashboard');
     }
   }, [router]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const res = await axios.post('http://localhost:8000/api/auth/login', { email, password });
@@ -314,9 +314,9 @@ export default function LoginPage() {
       localStorage.setItem('token', token); // Store JWT token in localStorage
       localStorage.setItem('userId', userId); // Store user ID in localStorage
       localStorage.setItem('name', name); // Optionally store the user name as well
-      setMessage('Login successful!');
+      // setMessage('Login successful!');
       router.push('/dashboard'); // Redirect to dashboard after successful login
-    } catch (err) {
+    } catch (err:any) {
       setError(err.response.data.msg || 'Login failed');
     }
   };
@@ -371,7 +371,7 @@ export default function LoginPage() {
             </Button>
           </form>
           <div className="mt-4 text-center">
-            <span className="text-gray-600">Don't have an account?</span>{' '}
+            <span className="text-gray-600">Dont have an account?</span>
             <Link href="/signup" className="text-teal-600 hover:underline">
               Sign up
             </Link>

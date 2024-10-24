@@ -62,7 +62,7 @@
 
 import React, { useState } from 'react';
 import { Button } from './ui/button';
-import { saveGoal } from '../../api'; // Import your API call
+// import { saveGoal } from '../../api'; // Import your API call
 
 interface AddGoalModalProps {
   isOpen: boolean;
@@ -81,7 +81,7 @@ const AddGoalModal: React.FC<AddGoalModalProps> = ({ isOpen, onClose, onSave }) 
         goal, // Name of the goal
         amount: parseFloat(amount), // Parse amount to a float
       };
-      await onSave(newGoal); // Save the new goal
+      await onSave(goal, parseFloat(amount)); // Save the new goal
       setGoal(''); // Clear the form
       setAmount('');
       onClose(); // Close the modal
@@ -124,7 +124,7 @@ const AddGoalModal: React.FC<AddGoalModalProps> = ({ isOpen, onClose, onSave }) 
             <Button variant="outline" onClick={onClose}>
               Cancel
             </Button>
-            <Button type="submit" variant="primary">
+            <Button type="submit" variant="default">
               Save
             </Button>
           </div>

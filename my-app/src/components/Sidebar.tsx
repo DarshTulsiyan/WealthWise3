@@ -1,8 +1,8 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
-import { BarChart2, PieChart, Target, FileText, TrendingUp, Calendar, User, LogOut } from 'lucide-react';
-import axios from 'axios';
+import { BarChart2, PieChart, Target, FileText, TrendingUp, User, LogOut } from 'lucide-react';
+// import axios from 'axios';
 import Link from 'next/link';
 
 const menuItems = [
@@ -14,7 +14,7 @@ const menuItems = [
 ];
 
 export default function Sidebar() {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchUserData = async () => {

@@ -37,8 +37,8 @@ const options = {
     y: {
       beginAtZero: true,
       ticks: {
-        callback: function(value: any) {
-          return '$' + value
+        callback: function(tickValue: string | number) {
+          return '$' + tickValue
         }
       }
     }

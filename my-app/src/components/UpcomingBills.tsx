@@ -56,7 +56,6 @@ interface Bill {
   description: string;
   lastCharge: string;
   amount: number;
-  paid: boolean;
 }
 
 const initialBills: Bill[] = [];
@@ -88,10 +87,15 @@ export default function UpcomingBills() {
   useEffect(() => {
     const fetchBills = async () => {
       const userId = localStorage.getItem('userId'); // Assuming userId is stored in localStorage
-      const data = await fetchBillsData(userId);
-      if (data && data.bills) {
-        setBills(data.bills); // Set the fetched bills
+      if (userId) {
+        const data = await fetchBillsData(userId);
+        if (data && data.bills) {
+          setBills(data.bills); // Set the fetched bills
+        }
       }
+      // if (data && data.bills) {
+      //   setBills(data.bills); // Set the fetched bills
+      // }
       setLoading(false); // Stop loading
     };
 

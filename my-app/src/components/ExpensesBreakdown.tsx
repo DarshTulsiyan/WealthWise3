@@ -105,11 +105,12 @@
 //   )
 // }
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'; // Ensure axios is installed with `npm install axios`
+// import axios from 'axios'; // Ensure axios is installed with `npm install axios`
 import { Card, CardContent } from './ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { Home, ShoppingBag, Car, Film, ShoppingCart, Package } from 'lucide-react';
-import { fetchExpenseData } from '@/app/expense/page';
+// import { fetchExpenseData } from '@/app/expense/page';
+import axios from 'axios';
 
 // Define the category icons
 const icons = {
@@ -122,22 +123,54 @@ const icons = {
 };
 
 export default function ExpensesBreakdown() {
-  const [categories, setCategories] = useState([]);
-  const [error, setError] = useState(null);
+  interface Item {
+    name: string;
+    amount: number;
+    date: string;
+  }
+
+  interface Category {
+    name: keyof typeof icons;
+    amount: number;
+    items: Item[];
+  }
+
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const userId = localStorage.getItem('userId'); // Assuming you're storing userId in localStorage
 
+    async function fetchExpenseData() {
+      const userId = localStorage.getItem('userId');
+      console.log(userId)
+      try {
+        const response = await axios.get(`http://localhost:8000/api/expenses`, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          },
+          params: {
+            userId: userId,
+          },
+        });
+    
+        return await response.data;
+      } catch (error) {
+        console.error('Error fetching expense data:', error);
+        return null;
+      }
+    }
+
     const fetchData = async () => {
       try {
-        const data = await fetchExpenseData(userId); // Fetch data using the provided function
+        const data = await fetchExpenseData(); // Fetch data using the provided function
         if (data && data.categories) {
           setCategories(data.categories);
         } else {
           setError('No expenses found for this user');
         }
-      } catch (error) {
-        setError('Error fetching expenses');
+      } catch (error:any) {
+        setError(error.message);
       }
     };
 
@@ -147,7 +180,7 @@ export default function ExpensesBreakdown() {
   return (
     <Card>
       <CardContent className="p-6">
-        <h2 className="text-xl font-semibold mb-4">Expenses Breakdown</h2>
+                  {/* const Icon = icons[category.name as keyof typeof icons] || Package; // Fallback to Package if no icon is found */}
         <Tabs defaultValue="categorically">
           <TabsList>
             <TabsTrigger value="categorically">Categorically</TabsTrigger>

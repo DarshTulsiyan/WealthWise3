@@ -9,7 +9,7 @@ import { Button } from '../../components/ui/button';
 import axios from 'axios';
 
 // Function to fetch current expense data
-export async function fetchExpenseData(userId) {
+async function fetchExpenseData(userId: string) {
   console.log(userId)
   try {
     const response = await axios.get(`http://localhost:8000/api/expenses`, {
@@ -29,7 +29,7 @@ export async function fetchExpenseData(userId) {
 }
 
 // Function to update expense data
-async function updateExpenseData(updatedExpenseData) {
+async function updateExpenseData(updatedExpenseData: { categories: { name: string; amount: number; items: { name: string; amount: number; date: string; }[]; }[] }) {
   const userId = localStorage.getItem('userId');
   console.log(JSON.stringify(updatedExpenseData));
 
@@ -59,15 +59,21 @@ export default function WealthWise() {
     setIsModalOpen(true);
   };
 
-  const handleSaveExpense = async (newExpense) => {
+  const handleSaveExpense = async (newExpense: { name: string; amount: number; date: string; categoryName: string }) => {
     const userId = localStorage.getItem('userId');
 
     // Fetch the current expense data
-    const data = await fetchExpenseData(userId);
+    let data;
+    if (userId) {
+      data = await fetchExpenseData(userId);
+    } else {
+      console.error('User ID is null');
+      return;
+    }
 
     if (data) {
       // Find the category and update its total
-      let category = data.categories.find(cat => cat.name === newExpense.categoryName);
+      let category = data.categories.find((cat: { name: string; amount: number; items: { name: string; amount: number; date: string; }[] }) => cat.name === newExpense.categoryName);
       if (!category) {
         // If category doesn't exist, create it
         category = { name: newExpense.categoryName, amount: 0, items: [] };

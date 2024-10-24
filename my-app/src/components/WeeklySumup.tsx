@@ -126,7 +126,13 @@ import Link from "next/link";
 import axios from "axios";
 
 export default function WeeklySumup() {
-  const [goals, setGoals] = useState([]);
+  interface Goal {
+    name: string;
+    amount: number;
+    goal: number;
+  }
+
+  const [goals, setGoals] = useState<Goal[]>([]);
   const [fetching, setFetching] = useState(true);
 
   // Fetch goals from the API
