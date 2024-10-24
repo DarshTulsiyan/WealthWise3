@@ -90,20 +90,20 @@ router.get('/google', passport.authenticate('google', {
 // @access Public
 router.get(
   '/google/callback',
-  passport.authenticate('google', { failureRedirect: 'http://localhost:3000/' }),
+  passport.authenticate('google', { failureRedirect: 'https://wealth-wise3.vercel.app/' }),
   async (req, res) => {
     const user = req.user;
 
     // Save user data in the database (if not already done)
     if (!user) {
-      return res.redirect('http://localhost:3000/login');
+      return res.redirect('https://wealth-wise3.vercel.app/login');
     }
 
     // Create JWT token
     const token = jwt.sign({ id: user._id, name: user.name }, 'your_jwt_secret', { expiresIn: '6h' });
 
     // Redirect to frontend with token and userId in URL
-    res.redirect(`http://localhost:3000/dashboard?token=${token}&userId=${user._id}&name=${user.name}`);
+    res.redirect(`https://wealth-wise3.vercel.app/dashboard?token=${token}&userId=${user._id}&name=${user.name}`);
 
   }
 );
