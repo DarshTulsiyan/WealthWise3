@@ -476,28 +476,41 @@ export default function WealthWise() {
   }, []);
 
   // Function to handle adding a new bill and updating the database
-  const addBill = async (newBill: Bill) => {
-    // Fetch the current bills from the database
-    const userId = localStorage.getItem('userId');
+  // const addBill = async (newBill: Bill) => {
+  //   // Fetch the current bills from the database
+  //   const userId = localStorage.getItem('userId');
 
-    if (!userId) {
-      console.error('User ID is not available in local storage');
-      return; // Early return if userId is not found
-    }
+  //   if (!userId) {
+  //     console.error('User ID is not available in local storage');
+  //     return; // Early return if userId is not found
+  //   }
 
-    const data = await fetchBillsData(userId);
+  //   const data = await fetchBillsData(userId);
     
-    if (data && data.bills) {
-      // Add the new bill to the list of bills
-      const updatedBills = [...data.bills, newBill];
+  //   if (data && data.bills) {
+  //     // Add the new bill to the list of bills
+  //     const updatedBills = [...data.bills, newBill];
 
-      // Send updated data to the backend
-      await updateBillsData({ bills: updatedBills });
+  //     // Send updated data to the backend
+  //     await updateBillsData({ bills: updatedBills });
       
-      // Update the UI with the new list of bills
-      setBills(updatedBills);
-    }
+  //     // Update the UI with the new list of bills
+  //     setBills(updatedBills);
+  //   }
 
+  //   setIsModalOpen(false); // Close modal after saving
+  // };
+
+  const addBill = async (newBill: Bill) => {
+    // Use the current state (bills) instead of fetching the bills again
+    const updatedBills = [...bills, newBill]; // Append new bill to the existing bills in state
+  
+    // Send updated data to the backend
+    await updateBillsData({ bills: updatedBills }); // Use the updated bills list
+  
+    // Update the UI with the new list of bills
+    setBills(updatedBills); // Update the UI with the new bill list
+  
     setIsModalOpen(false); // Close modal after saving
   };
 
