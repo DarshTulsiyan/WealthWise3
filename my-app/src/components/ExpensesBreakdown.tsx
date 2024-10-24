@@ -145,7 +145,7 @@ export default function ExpensesBreakdown() {
       const userId = localStorage.getItem('userId');
       console.log(userId)
       try {
-        const response = await axios.get(`http://localhost:8000/api/expenses`, {
+        const response = await axios.get(`https://wealth-wise3-4o1t.vercel.app/api/expenses`, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
           },

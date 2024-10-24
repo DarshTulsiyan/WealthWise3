@@ -27,7 +27,7 @@
 // // Function to fetch current bill data
 // async function fetchBillsData(userId: string) {
 //   try {
-//     const response = await axios.get(`http://localhost:8000/api/bills`, {
+//     const response = await axios.get(`https://wealth-wise3-4o1t.vercel.app/api/bills`, {
 //       headers: {
 //         'Authorization': `Bearer ${localStorage.getItem('token')}`,
 //       },
@@ -48,7 +48,7 @@
 //   const userId = localStorage.getItem('userId');
 //   console.log(userId);
 //   try {
-//     const response = await axios.post(`http://localhost:8000/api/bills`, updatedBillData, {
+//     const response = await axios.post(`https://wealth-wise3-4o1t.vercel.app/api/bills`, updatedBillData, {
 //       headers: {
 //         'Content-Type': 'application/json',
 //         'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -206,7 +206,7 @@
 // // Function to fetch current bill data
 // async function fetchBillsData(userId: string) {
 //   try {
-//     const response = await axios.get(`http://localhost:8000/api/bills`, {
+//     const response = await axios.get(`https://wealth-wise3-4o1t.vercel.app/api/bills`, {
 //       headers: {
 //         'Authorization': `Bearer ${localStorage.getItem('token')}`,
 //       },
@@ -228,7 +228,7 @@
 //   const userId = localStorage.getItem('userId');
 //   console.log(userId);
 //   try {
-//     const response = await axios.post(`http://localhost:8000/api/bills`, updatedBillData, {
+//     const response = await axios.post(`https://wealth-wise3-4o1t.vercel.app/api/bills`, updatedBillData, {
 //       headers: {
 //         'Content-Type': 'application/json',
 //         'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -413,7 +413,7 @@ const initialBills: Bill[] = [];
 // Function to fetch current bill data
 async function fetchBillsData(userId: string) {
   try {
-    const response = await axios.get(`http://localhost:8000/api/bills`, {
+    const response = await axios.get(`https://wealth-wise3-4o1t.vercel.app/api/bills`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
       },
@@ -435,7 +435,7 @@ async function updateBillsData(updatedBillData: { bills: Bill[] }) {
   const userId = localStorage.getItem('userId');
   console.log(userId);
   try {
-    const response = await axios.post(`http://localhost:8000/api/bills`, updatedBillData, {
+    const response = await axios.post(`https://wealth-wise3-4o1t.vercel.app/api/bills`, updatedBillData, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem('token')}`,

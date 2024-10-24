@@ -20,7 +20,7 @@
 //     e.preventDefault();
     
 //     try {
-//       const res = await axios.post('http://localhost:8000/api/auth/login', { email, password });
+//       const res = await axios.post('https://wealth-wise3-4o1t.vercel.app/api/auth/login', { email, password });
 //       const token = res.data.token;
 //       localStorage.setItem('token', token); // Store JWT token in localStorage
 //       setMessage('Login successful!');
@@ -157,7 +157,7 @@
 //     e.preventDefault();
     
 //     try {
-//       const res = await axios.post('http://localhost:8000/api/auth/login', { email, password });
+//       const res = await axios.post('https://wealth-wise3-4o1t.vercel.app/api/auth/login', { email, password });
 //       const { token, userId, name } = res.data; // Destructure the response to get token and userId
 //       localStorage.setItem('token', token); // Store JWT token in localStorage
 //       localStorage.setItem('userId', userId); // Store user ID in localStorage
@@ -309,7 +309,7 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:8000/api/auth/login', { email, password });
+      const res = await axios.post('https://wealth-wise3-4o1t.vercel.app/api/auth/login', { email, password });
       const { token, userId, name } = res.data; // Destructure the response to get token and userId
       localStorage.setItem('token', token); // Store JWT token in localStorage
       localStorage.setItem('userId', userId); // Store user ID in localStorage
@@ -389,7 +389,7 @@ export default function LoginPage() {
             variant="outline"
             className="w-full mt-4 flex items-center justify-center"
             onClick={() => {
-              window.location.href = 'http://localhost:8000/api/auth/google'; // Initiates Google Sign-In process
+              window.location.href = 'https://wealth-wise3-4o1t.vercel.app/api/auth/google'; // Initiates Google Sign-In process
             }}
           >
             <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">

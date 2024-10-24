@@ -21,7 +21,7 @@ export default function Sidebar() {
       try {
         const name = localStorage.getItem('name'); 
   
-        // const response = await axios.get('http://localhost:8000/api/user', {
+        // const response = await axios.get('https://wealth-wise3-4o1t.vercel.app/api/user', {
         //   headers: {
         //     Authorization: `Bearer ${token}`,
         //   },

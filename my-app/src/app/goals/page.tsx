@@ -72,7 +72,7 @@
 //   const userId = localStorage.getItem('userId');
 //   try {
 
-//     const response = await axios.get(`http://localhost:8000/api/goals`, {
+//     const response = await axios.get(`https://wealth-wise3-4o1t.vercel.app/api/goals`, {
 //       headers: {
 //         'Authorization': `Bearer ${localStorage.getItem('token')}`,
 //       },
@@ -92,7 +92,7 @@
 // const saveGoalToDatabase = async (goal: string, amount: number) => {
 //   const userId = localStorage.getItem('userId');
 //   try {
-//     await axios.post(`http://localhost:8000/api/goals`, {
+//     await axios.post(`https://wealth-wise3-4o1t.vercel.app/api/goals`, {
 //       category: goal,  // Send the category name
 //       goal: amount     // Send the target goal amount
 //     }, {
@@ -171,7 +171,7 @@ export default function WealthWise() {
   const fetchGoals = async () => {
     const userId = localStorage.getItem('userId');
     try {
-      const response = await axios.get(`http://localhost:8000/api/goals`, {
+      const response = await axios.get(`https://wealth-wise3-4o1t.vercel.app/api/goals`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },
