@@ -501,16 +501,38 @@ export default function WealthWise() {
   //   setIsModalOpen(false); // Close modal after saving
   // };
 
+  // const addBill = async (newBill: Bill) => {
+  //   // Use the current state (bills) instead of fetching the bills again
+  //   const updatedBills = [...bills, newBill]; // Append new bill to the existing bills in state
+  
+  //   // Send updated data to the backend
+  //   await updateBillsData({ bills: updatedBills }); // Use the updated bills list
+  
+  //   // Update the UI with the new list of bills
+  //   setBills(updatedBills); // Update the UI with the new bill list
+  
+  //   setIsModalOpen(false); // Close modal after saving
+  // };
+
   const addBill = async (newBill: Bill) => {
-    // Use the current state (bills) instead of fetching the bills again
-    const updatedBills = [...bills, newBill]; // Append new bill to the existing bills in state
-  
-    // Send updated data to the backend
-    await updateBillsData({ bills: updatedBills }); // Use the updated bills list
-  
-    // Update the UI with the new list of bills
-    setBills(updatedBills); // Update the UI with the new bill list
-  
+    const userId = localStorage.getItem('userId');
+
+    // Fetch the current bill data
+    // const data = await fetchBillsData(userId);
+
+    if (bills) {
+      // Add the new bill to the list of bills
+      bills.push({
+        description: newBill.description,
+        amount: newBill.amount,
+        lastCharge: newBill.lastCharge,
+        dueDate: newBill.dueDate,
+      });
+
+      // Send updated data to the backend
+      await updateBillsData({ bills: bills });
+    }
+
     setIsModalOpen(false); // Close modal after saving
   };
 
