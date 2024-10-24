@@ -110,8 +110,8 @@ router.post('/', auth, async (req, res) => {
     const userBills = await UserBill.findOneAndUpdate(
       { user: userId },
       {
-        $push: {
-          bills: { $each: bills }, // Use $push with $each to add multiple bills
+        $set: {
+          bills: bills, // Use $push with $each to add multiple bills
         },
       },
       {
