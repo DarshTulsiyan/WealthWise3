@@ -66,7 +66,7 @@ app.use(bodyParser.json());
 
 app.use(
   cors({
-    origin: 'https://wealth-wise3.vercel.app/',
+    origin: 'https://wealth-wise3.vercel.app',
     credentials: true,
   })
 );
