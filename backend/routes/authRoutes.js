@@ -102,6 +102,8 @@ router.get(
     // Create JWT token
     const token = jwt.sign({ id: user._id, name: user.name }, 'your_jwt_secret', { expiresIn: '6h' });
 
+    
+
     // Redirect to frontend with token and userId in URL
     res.redirect(`https://wealth-wise3.vercel.app/dashboard?token=${token}&userId=${user._id}&name=${user.name}`);
 
