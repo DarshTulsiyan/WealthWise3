@@ -2,9 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
 const User = require('../models/User');
-const Expense = require('../models/Expense'); // Assuming Expense model is imported
-const UserBills = require('../models/UserBills'); // Assuming UserBills model is imported
-const UserGoals = require('../models/UserGoals');
+
 
 // Register User
 exports.registerUser = async (req, res) => {
@@ -70,38 +68,6 @@ exports.registerUser = async (req, res) => {
 };
 
 // Login User
-// exports.loginUser = async (req, res) => {
-//   const errors = validationResult(req);
-//   if (!errors.isEmpty()) {
-//     return res.status(400).json({ errors: errors.array() });
-//   }
-
-//   const { email, password } = req.body;
-
-//   try {
-//     const user = await User.findOne({ email });
-//     if (!user) {
-//       return res.status(400).json({ msg: 'Invalid credentials' });
-//     }
-
-//     // Assuming you are using bcrypt to compare passwords
-//     const isMatch = await bcrypt.compare(password, user.password);
-//     if (!isMatch) {
-//       return res.status(400).json({ msg: 'Invalid credentials' });
-//     }
-
-//     // Generate JWT token
-//     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '6h' });
-
-//     // Respond with token and user ID
-//     return res.json({ token, userId: user._id, name: user.name }); // Include userId in the response
-//   } catch (err) {
-//     console.error(err);
-//     return res.status(500).send('Server Error');
-//   }
-// };
-
-
 exports.loginUser = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -116,18 +82,17 @@ exports.loginUser = async (req, res) => {
       return res.status(400).json({ msg: 'Invalid credentials' });
     }
 
-    // Check if the password matches
+    // Assuming you are using bcrypt to compare passwords
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ msg: 'Invalid credentials' });
     }
 
-
     // Generate JWT token
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '6h' });
     
-    // Respond with token, user ID, and user name
-    return res.json({ token, userId: user._id, name: user.name });
+    // Respond with token and user ID
+    return res.json({ token, userId: user._id, name: user.name }); // Include userId in the response
   } catch (err) {
     console.error(err);
     return res.status(500).send('Server Error');
