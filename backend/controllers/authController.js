@@ -122,24 +122,6 @@ exports.loginUser = async (req, res) => {
       return res.status(400).json({ msg: 'Invalid credentials' });
     }
 
-    // Check and create empty instances of goals, bills, and expenses if they don't exist
-    const [existingGoals, existingBills, existingExpenses] = await Promise.all([
-      UserGoals.findOne({ user: user._id }),
-      UserBills.findOne({ user: user._id }),
-      Expense.findOne({ user: user._id }),
-    ]);
-
-    if (!existingGoals) {
-      await new UserGoals({ user: user._id, categories: [] }).save();
-    }
-
-    if (!existingBills) {
-      await new UserBills({ user: user._id, bills: [] }).save();
-    }
-
-    if (!existingExpenses) {
-      await new Expense({ user: user._id, categories: [] }).save();
-    }
 
     // Generate JWT token
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '6h' });
