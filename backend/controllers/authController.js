@@ -2,9 +2,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
 const User = require('../models/User');
-const Expense = require('../models/Expense'); // Assuming Expense model is imported
-const UserBills = require('../models/UserBills'); // Assuming UserBills model is imported
-const UserGoals = require('../models/UserGoals');
 
 // Register User
 exports.registerUser = async (req, res) => {
@@ -35,23 +32,7 @@ exports.registerUser = async (req, res) => {
 
     await user.save();
 
-    const emptyGoals = new UserGoals({
-      user: user._id, 
-      categories: []
-    });
-
-    const emptyBills = new UserBills({
-      user: user._id, 
-      bills: []
-    });
-
-    const emptyExpenses = new Expense({
-      user: user._id, 
-      categories: []
-    });
-
-    // Save the empty instances to the database
-    await Promise.all([emptyGoals.save(), emptyBills.save(), emptyExpenses.save()]);
+    
 
     // Create JWT token
     const payload = {
